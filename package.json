@@ -1,0 +1,14 @@
+{
+  "name": "fastnet-landing",
+  "version": "1.0.0",
+  "private": true,
+  "description": "FastNet — resilient 5G internet landing site",
+  "scripts": {
+    "build": "node build.mjs",
+    "dev": "node build.mjs && node serve.mjs",
+    "preview": "node serve.mjs"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.0"
+  }
+}
