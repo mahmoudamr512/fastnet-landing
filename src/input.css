@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+@source "../src/**/*.jsx";
+@source "../FastNet.html";
+
 @theme {
   --color-ink-900: #0A0B0D;
   --color-ink-800: #14161A;
