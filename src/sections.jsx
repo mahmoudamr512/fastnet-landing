@@ -99,7 +99,7 @@ const FailoverDiagram = ({ mode }) => {
     : 'oklch(0.76 0.16 155)';
 
   return (
-    <div style={{
+    <div data-fail-diagram style={{
       aspectRatio: '5 / 4',
       background: 'linear-gradient(160deg, #14161A 0%, #0A0B0D 100%)',
       border: '1px solid rgba(255,255,255,0.08)',
@@ -475,7 +475,7 @@ const FinalCTA = ({ go }) => (
           Check 5G coverage in 30 seconds. If your signal qualifies,
           we'll schedule a survey. If it doesn't, we'll tell you — and we won't try to sell you anything.
         </p>
-        <div style={{ display: 'flex', gap: 12, marginTop: 48, flexWrap: 'wrap' }}>
+        <div data-btn-row style={{ display: 'flex', gap: 12, marginTop: 48, flexWrap: 'wrap' }}>
           <button className="btn btn-lg btn-signal" onClick={() => go('availability')}>
             Check availability <Arrow size={14}/>
           </button>
@@ -534,7 +534,7 @@ const Footer = ({ go }) => (
         ))}
       </div>
 
-      <div style={{
+      <div data-footer-bottom style={{
         paddingTop: 28, borderTop: '1px solid rgba(255,255,255,0.06)',
         display: 'flex', justifyContent: 'space-between', alignItems: 'center',
         fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.04em',

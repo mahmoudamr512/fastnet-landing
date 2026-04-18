@@ -25,7 +25,7 @@ const Checkout = ({ go, planId, setPlanId }) => {
           <SectionTag number="Checkout">Order FastNet</SectionTag>
 
           {/* Stepper */}
-          <div style={{ display: 'flex', gap: 0, marginTop: 40, marginBottom: 60,
+          <div data-checkout-stepper style={{ display: 'flex', gap: 0, marginTop: 40, marginBottom: 60,
             borderBottom: '1px solid var(--ink-100)' }}>
             {steps.map((s, i) => {
               const idx = i + 1;

@@ -35,7 +35,7 @@ const Tweaks = ({ tweaks, setTweaks }) => {
   ];
 
   return (
-    <div style={{
+    <div data-tweaks-panel style={{
       position: 'fixed', bottom: 20, right: 20,
       width: 300,
       background: 'rgba(10,11,13,0.92)',

@@ -14,7 +14,7 @@ const Dashboard = ({ go }) => {
   return (
     <div style={{ background: 'var(--ink-900)', color: 'var(--bone-100)', minHeight: 'calc(100vh - 64px)' }}>
       <div className="container" style={{ padding: '48px 32px' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 40 }}>
+        <div data-dash-head style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 40 }}>
           <div>
             <div className="mono-label" style={{ color: 'var(--signal)' }}>Dashboard · preview</div>
             <h1 className="display-2" style={{ margin: '8px 0 0', fontSize: 48 }}>

@@ -56,6 +56,14 @@ Day/time picker with a contact form. Click any day card to filter time slots; cl
 
 ![Consultation](docs/screenshots/08-consultation.png)
 
+### Mobile
+
+Mobile-first layout: collapsing grids, touch-friendly tap targets, full-screen menu sheet behind a hamburger trigger, condensed type scale, sticky-removed checkout sidebar.
+
+| Home | Pricing | Consultation | Menu |
+|---|---|---|---|
+| ![Mobile home](docs/screenshots/10-mobile-home.png) | ![Mobile pricing](docs/screenshots/12-mobile-pricing.png) | ![Mobile consultation](docs/screenshots/13-mobile-consultation.png) | ![Mobile menu](docs/screenshots/11-mobile-menu.png) |
+
 ### Dashboard preview
 
 Customer-facing telemetry: live latency, 24-hour throughput chart with failover annotations, recent events, plan summary, network details, and assigned engineer.

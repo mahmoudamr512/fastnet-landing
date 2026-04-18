@@ -19,7 +19,7 @@ const HeroEditorial = ({ go }) => {
         WebkitMaskImage: 'radial-gradient(ellipse 80% 60% at 50% 40%, black, transparent)',
       }}/>
       <div className="container" style={{ position: 'relative' }}>
-        <div style={{
+        <div data-hero-toprow style={{
           display: 'flex', justifyContent: 'space-between', alignItems: 'center',
           marginBottom: 72,
         }}>
@@ -48,7 +48,7 @@ const HeroEditorial = ({ go }) => {
             Private 5G — engineered as a primary connection where fiber can't reach,
             and as a silent failover when it fails. Installed by specialists. Monitored around the clock.
           </p>
-          <div style={{ display: 'flex', gap: 12, justifyContent: 'flex-end' }}>
+          <div data-btn-row style={{ display: 'flex', gap: 12, justifyContent: 'flex-end' }}>
             <button className="btn btn-lg btn-signal" onClick={() => go('pricing')}>
               View plans <Arrow size={14} />
             </button>
@@ -310,7 +310,7 @@ const HeroProduct = ({ go }) => {
           </svg>
 
           {/* Floating spec callouts */}
-          <div style={{
+          <div data-product-callout style={{
             position: 'absolute', top: '16%', right: '8%',
             padding: '10px 14px', borderRadius: 10,
             background: 'rgba(10,11,13,0.75)',
@@ -325,7 +325,7 @@ const HeroProduct = ({ go }) => {
               <div style={{ color: 'var(--bone-100)' }}>5G mmWave · Sub-6</div>
             </div>
           </div>
-          <div style={{
+          <div data-product-callout style={{
             position: 'absolute', top: '14%', left: '6%',
             padding: '10px 14px', borderRadius: 10,
             background: 'rgba(10,11,13,0.75)',
@@ -337,7 +337,7 @@ const HeroProduct = ({ go }) => {
             <div style={{ color: 'var(--signal)', fontSize: 9, letterSpacing: '0.12em' }}>PEAK</div>
             <div style={{ color: 'var(--bone-100)' }}>3.4 Gbps</div>
           </div>
-          <div style={{
+          <div data-product-callout style={{
             position: 'absolute', bottom: '20%', left: '6%',
             padding: '10px 14px', borderRadius: 10,
             background: 'rgba(10,11,13,0.75)',
@@ -349,7 +349,7 @@ const HeroProduct = ({ go }) => {
             <div style={{ color: 'var(--signal)', fontSize: 9, letterSpacing: '0.12em' }}>SIM</div>
             <div style={{ color: 'var(--bone-100)' }}>Dual · Carrier diverse</div>
           </div>
-          <div style={{
+          <div data-product-callout style={{
             position: 'absolute', bottom: '18%', right: '8%',
             padding: '10px 14px', borderRadius: 10,
             background: 'rgba(10,11,13,0.75)',
@@ -371,7 +371,7 @@ const HeroProduct = ({ go }) => {
           </svg>
         </div>
 
-        <div style={{ display: 'flex', gap: 12, justifyContent: 'center', marginTop: 48 }}>
+        <div data-btn-row style={{ display: 'flex', gap: 12, justifyContent: 'center', marginTop: 48 }}>
           <button className="btn btn-lg btn-signal" onClick={() => go('pricing')}>
             Configure & buy <Arrow size={14}/>
           </button>
@@ -468,7 +468,7 @@ const HeroSignal = ({ go }) => {
               FastNet is a managed 5G service for the places a modem and a hope won't do.
               Custom hardware, carrier-diverse routing, hands-on installation by our network team.
             </p>
-            <div style={{ display: 'flex', gap: 12, marginTop: 40 }}>
+            <div data-btn-row style={{ display: 'flex', gap: 12, marginTop: 40 }}>
               <button className="btn btn-lg btn-signal" onClick={() => go('pricing')}>
                 Plans & pricing <Arrow size={14}/>
               </button>
@@ -509,7 +509,7 @@ const HeroSignal = ({ go }) => {
         </div>
 
         {/* Bottom rail */}
-        <div style={{
+        <div data-signal-bottom style={{
           marginTop: 100,
           padding: '32px 0',
           borderTop: '1px solid rgba(255,255,255,0.08)',
