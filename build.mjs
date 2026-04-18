@@ -6,7 +6,7 @@ import { join } from 'node:path';
 const ORDER = [
   'primitives', 'nav', 'hero', 'sections', 'howitworks', 'usecases',
   'pricing', 'checkout', 'availability', 'consultation', 'dashboard',
-  'tweaks', 'app',
+  'about', 'tweaks', 'app',
 ];
 
 const root = process.cwd();

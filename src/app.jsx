@@ -81,8 +81,10 @@ function App() {
       {route === 'availability' && <Availability go={go}/>}
       {route === 'consultation' && <Consultation go={go}/>}
       {route === 'dashboard' && <Dashboard go={go}/>}
+      {route === 'about' && <About go={go}/>}
 
       <Footer go={go}/>
+      <AuthorBadge go={go}/>
       <Tweaks tweaks={tweaks} setTweaks={setTweaks}/>
     </>
   );

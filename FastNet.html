@@ -47,14 +47,40 @@
   "@type": "WebSite",
   "name": "FastNet (Showcase Project)",
   "url": "https://fastnet-landing.vercel.app/",
-  "description": "Showcase landing site for FastNet, a fictional premium 5G internet brand. Built with React + Tailwind. This is a portfolio piece — not a real ISP.",
-  "creator": {
-    "@type": "Person",
-    "name": "Mahmoud Amr",
-    "url": "https://github.com/mahmoudamr512"
-  },
+  "description": "Showcase landing site for FastNet, a fictional premium 5G internet brand. Built with React + Tailwind. This is a portfolio piece by Mahmoud Amr — not a real ISP.",
+  "creator": { "@id": "https://fastnet-landing.vercel.app/#mahmoud" },
   "isAccessibleForFree": true,
   "inLanguage": "en-US"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": "https://fastnet-landing.vercel.app/#mahmoud",
+  "name": "Mahmoud Amr",
+  "url": "https://fastnet-landing.vercel.app/about",
+  "email": "mailto:contact@mahmoudamr.dev",
+  "jobTitle": "Senior Product Engineer · Frontend & Full-stack",
+  "description": "Independent product engineer building polished, conversion-focused web apps for startups and design studios.",
+  "sameAs": [
+    "https://www.upwork.com/freelancers/mahmouda299",
+    "https://www.linkedin.com/in/mahmoud-a-46818913b/",
+    "https://github.com/mahmoudamr512"
+  ],
+  "knowsAbout": ["React", "Next.js", "TypeScript", "Tailwind CSS", "Node.js", "Vercel", "Design systems", "Frontend performance"]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "name": "FastNet Landing Site",
+  "url": "https://fastnet-landing.vercel.app/",
+  "image": "https://fastnet-landing.vercel.app/og.png",
+  "creator": { "@id": "https://fastnet-landing.vercel.app/#mahmoud" },
+  "keywords": "React, Tailwind, landing page, design showcase, 5G, premium ISP",
+  "license": "https://github.com/mahmoudamr512/fastnet-landing"
 }
 </script>
 
@@ -68,15 +94,6 @@
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
 </head>
 <body>
-<a href="https://github.com/mahmoudamr512/fastnet-landing"
-   style="position:fixed;bottom:12px;left:12px;z-index:300;
-          padding:6px 12px;background:rgba(10,11,13,0.85);color:#F4F1EC;
-          border-radius:999px;font:500 11px/1 'JetBrains Mono',monospace;
-          letter-spacing:.08em;text-transform:uppercase;backdrop-filter:blur(10px);
-          border:1px solid rgba(255,255,255,0.12)"
-   target="_blank" rel="noopener">
-  Showcase project · view source
-</a>
 <div id="root"></div>
 
 <script type="text/babel" src="src/primitives.jsx"></script>
@@ -90,6 +107,7 @@
 <script type="text/babel" src="src/availability.jsx"></script>
 <script type="text/babel" src="src/consultation.jsx"></script>
 <script type="text/babel" src="src/dashboard.jsx"></script>
+<script type="text/babel" src="src/about.jsx"></script>
 <script type="text/babel" src="src/tweaks.jsx"></script>
 <script type="text/babel" src="src/app.jsx"></script>
 </body>

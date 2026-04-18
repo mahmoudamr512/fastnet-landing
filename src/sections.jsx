@@ -353,7 +353,7 @@ const Footer = ({ go }) => (
         {[
           { t: 'Service',     l: [['How it works','how'], ['Use cases','usecases'], ['Pricing','pricing'], ['Dashboard','dashboard']] },
           { t: 'Get started', l: [['Check availability','availability'], ['Schedule consult','consultation'], ['Order FastNet','pricing']] },
-          { t: 'Company',     l: [['About','#'], ['Integrators','#'], ['Press','#']] },
+          { t: 'Company',     l: [['About the maker','about'], ['Integrators','#'], ['Press','#']] },
           { t: 'Support',     l: [['Status','#'], ['Docs','#'], ['Contact','#']] },
         ].map((col, i) => (
           <div key={i}>

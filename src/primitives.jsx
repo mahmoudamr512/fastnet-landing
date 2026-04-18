@@ -102,4 +102,41 @@ const StatusPill = ({ state = 'active', label }) => {
   );
 };
 
-Object.assign(window, { cn, Logo, Arrow, SignalIcon, SectionTag, Reveal, Ticker, StatusPill });
+const AuthorBadge = ({ go }) => {
+  const [open, setOpen] = React.useState(false);
+  return (
+    <div className="fixed bottom-3 left-3 md:bottom-4 md:left-4 z-[150] font-mono text-[11px] tracking-wider uppercase">
+      {open ? (
+        <div className="bg-ink-900/95 text-bone-100 backdrop-blur-md rounded-2xl border border-white/[0.12]
+                        p-4 shadow-2xl flex flex-col gap-2 min-w-[220px]">
+          <div className="flex items-center justify-between mb-1">
+            <span className="text-signal">Built by</span>
+            <button onClick={() => setOpen(false)} className="text-ink-300">close</button>
+          </div>
+          <div className="text-bone-100 text-[13px] normal-case tracking-tight font-sans font-medium">
+            Mahmoud Amr
+          </div>
+          <button onClick={() => { setOpen(false); go('about'); }}
+            className="text-left hover:text-signal transition-colors">
+            About this project →
+          </button>
+          <a href="https://www.upwork.com/freelancers/mahmouda299" target="_blank" rel="noopener noreferrer"
+             className="hover:text-signal transition-colors">Upwork →</a>
+          <a href="https://www.linkedin.com/in/mahmoud-a-46818913b/" target="_blank" rel="noopener noreferrer"
+             className="hover:text-signal transition-colors">LinkedIn →</a>
+          <a href="https://github.com/mahmoudamr512/fastnet-landing" target="_blank" rel="noopener noreferrer"
+             className="hover:text-signal transition-colors">GitHub source →</a>
+        </div>
+      ) : (
+        <button onClick={() => setOpen(true)}
+          className="px-3.5 py-1.5 bg-ink-900/85 text-bone-100 backdrop-blur-md rounded-full
+                     border border-white/[0.12] hover:bg-ink-900 transition-colors flex items-center gap-2">
+          <span className="signal-dot w-1.5 h-1.5"/>
+          Showcase · by Mahmoud Amr
+        </button>
+      )}
+    </div>
+  );
+};
+
+Object.assign(window, { cn, Logo, Arrow, SignalIcon, SectionTag, Reveal, Ticker, StatusPill, AuthorBadge });
