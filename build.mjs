@@ -1,6 +1,6 @@
 import { transformSync } from 'esbuild';
 import { execSync } from 'node:child_process';
-import { readFileSync, writeFileSync, mkdirSync, existsSync, rmSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync, existsSync, rmSync, readdirSync, copyFileSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 
 const ORDER = [
@@ -63,4 +63,21 @@ const transformed = html
   );
 
 writeFileSync(join(dist, 'index.html'), transformed);
+
+// 4. Copy public/* to dist/
+const pub = join(root, 'public');
+if (existsSync(pub)) {
+  const copyRecursive = (srcDir, destDir) => {
+    mkdirSync(destDir, { recursive: true });
+    for (const entry of readdirSync(srcDir)) {
+      const s = join(srcDir, entry);
+      const d = join(destDir, entry);
+      if (statSync(s).isDirectory()) copyRecursive(s, d);
+      else copyFileSync(s, d);
+    }
+  };
+  copyRecursive(pub, dist);
+  console.log('→ public/ copied');
+}
+
 console.log('Build complete → dist/');
