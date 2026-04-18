@@ -9,9 +9,11 @@
     "preview": "node serve.mjs"
   },
   "devDependencies": {
+    "@sparticuz/chromium": "^147.0.0",
     "@tailwindcss/cli": "^4.2.2",
     "esbuild": "^0.25.0",
     "puppeteer": "^24.41.0",
+    "puppeteer-core": "^24.41.0",
     "tailwindcss": "^4.2.2"
   }
 }

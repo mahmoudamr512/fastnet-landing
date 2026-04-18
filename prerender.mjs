@@ -1,8 +1,27 @@
 // Prerender SPA routes to static HTML for SEO + scraper unfurls
-import puppeteer from 'puppeteer';
 import { createServer } from 'node:http';
 import { readFile, stat, writeFile, mkdir } from 'node:fs/promises';
 import { extname, join, normalize } from 'node:path';
+
+// On Vercel (Linux build sandbox) the system has no Chrome libs.
+// Use puppeteer-core + @sparticuz/chromium which ships its own bundled binary.
+// Locally (Windows/Mac) use full puppeteer with its bundled Chromium.
+const isLinuxBuildEnv = process.platform === 'linux';
+
+let puppeteer, launchOpts;
+if (isLinuxBuildEnv) {
+  const chromium = (await import('@sparticuz/chromium')).default;
+  puppeteer = (await import('puppeteer-core')).default;
+  launchOpts = {
+    args: chromium.args,
+    defaultViewport: chromium.defaultViewport,
+    executablePath: await chromium.executablePath(),
+    headless: chromium.headless,
+  };
+} else {
+  puppeteer = (await import('puppeteer')).default;
+  launchOpts = { headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] };
+}
 
 const dist = join(process.cwd(), 'dist');
 
@@ -55,10 +74,7 @@ await new Promise(r => server.listen(0, r));
 const port = server.address().port;
 console.log(`→ static server :${port}`);
 
-const browser = await puppeteer.launch({
-  headless: true,
-  args: ['--no-sandbox', '--disable-setuid-sandbox'],
-});
+const browser = await puppeteer.launch(launchOpts);
 
 for (const route of ROUTES) {
   const page = await browser.newPage();
