@@ -1,5 +1,6 @@
 import { transformSync } from 'esbuild';
-import { readFileSync, writeFileSync, mkdirSync, copyFileSync, existsSync, rmSync } from 'node:fs';
+import { execSync } from 'node:child_process';
+import { readFileSync, writeFileSync, mkdirSync, existsSync, rmSync } from 'node:fs';
 import { join } from 'node:path';
 
 const ORDER = [
@@ -14,6 +15,15 @@ const dist = join(root, 'dist');
 if (existsSync(dist)) rmSync(dist, { recursive: true, force: true });
 mkdirSync(dist, { recursive: true });
 
+// 1. Tailwind CSS build
+console.log('→ tailwind');
+execSync(
+  `npx @tailwindcss/cli -i src/input.css -o dist/styles.css --minify`,
+  { stdio: 'inherit', cwd: root }
+);
+
+// 2. JSX transform + bundle
+console.log('→ esbuild');
 const chunks = ORDER.map((name) => {
   const src = readFileSync(join(root, 'src', `${name}.jsx`), 'utf8');
   const { code } = transformSync(src, {
@@ -28,15 +38,12 @@ const chunks = ORDER.map((name) => {
 });
 
 const minified = transformSync(chunks.join('\n'), {
-  loader: 'js',
-  minify: true,
-  target: 'es2019',
+  loader: 'js', minify: true, target: 'es2019',
 });
-
 writeFileSync(join(dist, 'bundle.js'), minified.code);
 
+// 3. HTML rewrite
 const html = readFileSync(join(root, 'FastNet.html'), 'utf8');
-
 const transformed = html
   .replace(
     /<script src="https:\/\/unpkg\.com\/react@[^"]+"[^>]*><\/script>/,
@@ -56,5 +63,4 @@ const transformed = html
   );
 
 writeFileSync(join(dist, 'index.html'), transformed);
-
 console.log('Build complete → dist/');
