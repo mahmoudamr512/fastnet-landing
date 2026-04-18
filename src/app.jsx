@@ -1,7 +1,7 @@
 // FastNet — App root
 
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
-  "hero": "editorial",
+  "hero": "product",
   "accent": "lime",
   "displayType": "serif",
   "pricingLayout": "cards"
