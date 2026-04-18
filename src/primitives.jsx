@@ -129,9 +129,11 @@ const AuthorBadge = ({ go }) => {
         </div>
       ) : (
         <button onClick={() => setOpen(true)}
-          className="px-3.5 py-1.5 bg-ink-900/85 text-bone-100 backdrop-blur-md rounded-full
-                     border border-white/[0.12] hover:bg-ink-900 transition-colors flex items-center gap-2">
-          <span className="signal-dot w-1.5 h-1.5"/>
+          className="author-badge px-3.5 py-1.5 bg-ink-900/85 text-bone-100 backdrop-blur-md rounded-full
+                     border border-white/[0.12] hover:bg-ink-900 transition-colors flex items-center gap-2
+                     shadow-lg shadow-black/30">
+          <span className="author-badge-dot w-2 h-2 rounded-full bg-signal"
+                style={{ boxShadow: '0 0 10px var(--color-signal)' }}/>
           Showcase · by Mahmoud Amr
         </button>
       )}

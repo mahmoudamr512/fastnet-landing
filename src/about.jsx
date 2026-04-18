@@ -1,4 +1,4 @@
-// FastNet — About the maker
+// FastNet — About Mahmoud Amr
 
 const SOCIAL_LINKS = [
   { label: 'Upwork',   url: 'https://www.upwork.com/freelancers/mahmouda299',  handle: 'mahmouda299' },
@@ -10,6 +10,7 @@ const SOCIAL_LINKS = [
 const STACK = [
   ['Frontend',     'React · Next.js · TypeScript · Tailwind · Vite · esbuild'],
   ['Backend',      'Node · Java · PostgreSQL · REST/GraphQL · serverless'],
+  ['AI & automation', 'Anthropic + OpenAI APIs · n8n · Zapier · custom agents · MCP servers'],
   ['Cloud',        'Vercel · AWS · GCP · Docker · CI/CD'],
   ['Design ops',   'Figma → production · design systems · motion · accessibility'],
 ];
@@ -21,18 +22,40 @@ const About = ({ go }) => (
         style={{ background: 'radial-gradient(circle, var(--color-signal-soft) 0%, transparent 60%)' }}/>
       <div className="container-app relative">
         <SectionTag number="About">The maker</SectionTag>
-        <h1 className="display-1 m-0 max-w-[16ch]">
-          Mahmoud <span className="italic text-signal">Amr.</span>
-        </h1>
-        <p className="body-lg text-ink-200 mt-6 max-w-[58ch]">
-          Senior product engineer building polished, conversion-focused web apps for startups,
-          design studios, and small teams. This site — FastNet — is a portfolio piece showcasing
-          how I take a brand brief from blank file to deployed product.
-        </p>
+
+        <div className="grid md:grid-cols-[280px_1fr] gap-8 md:gap-14 items-center">
+          <div className="relative">
+            <div className="absolute -inset-2 rounded-full pointer-events-none"
+              style={{ background: 'radial-gradient(circle, var(--color-signal-soft) 0%, transparent 70%)' }}/>
+            <img
+              src="/mahmoud.jpg"
+              alt="Mahmoud Amr — Senior Software Engineer, freelance full-stack & AI / automation specialist based in Cairo"
+              width="280" height="280"
+              className="relative w-44 h-44 md:w-[280px] md:h-[280px] rounded-full object-cover
+                         border-2 border-white/[0.12] shadow-2xl"
+              itemProp="image"
+            />
+          </div>
+
+          <div>
+            <h1 className="display-1 m-0" itemProp="name">
+              Mahmoud <span className="italic text-signal">Amr.</span>
+            </h1>
+            <div className="mono-label text-signal mt-4" itemProp="jobTitle">
+              Senior Software Engineer · Full-Stack · AI &amp; Automation
+            </div>
+            <p className="body-lg text-ink-200 mt-4 max-w-[58ch]">
+              Independent engineer based in <span itemProp="addressLocality">Cairo</span> —
+              freelancing since 2016. I build polished, conversion-focused web apps and ship
+              custom automations + AI agents for startups, design studios, and small teams.
+              This site — FastNet — is one of those builds, end to end.
+            </p>
+          </div>
+        </div>
 
         <div className="flex flex-wrap gap-3 mt-10">
           {SOCIAL_LINKS.map(s => (
-            <a key={s.label} href={s.url} target="_blank" rel="noopener noreferrer"
+            <a key={s.label} href={s.url} target="_blank" rel="noopener noreferrer me"
               className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-white/[0.06]
                          border border-white/[0.12] hover:bg-white/[0.1] transition-colors
                          font-mono text-[12px] tracking-wider uppercase">
@@ -62,9 +85,9 @@ const About = ({ go }) => (
           </p>
           <p className="body text-ink-500 m-0">
             I take handoffs from designers and AI prototyping tools, then turn them into
-            production code that doesn't look like AI wrote it. Comfortable owning the
-            full surface — frontend, backend glue, infra — for a small team or a single
-            founder.
+            production code that doesn't look like AI wrote it. I also build internal AI
+            agents, n8n / Zapier workflows, and Anthropic + OpenAI integrations for teams
+            that want their tooling to compound.
           </p>
         </div>
       </div>
@@ -112,12 +135,12 @@ const About = ({ go }) => (
           Need a site like this? <span className="italic text-signal">Let's talk.</span>
         </h2>
         <p className="body-lg text-ink-200 mt-6 max-w-[50ch]">
-          Available through Upwork or direct. Response within 24 hours.
+          Available through Upwork or direct. Response within 24 hours, Cairo timezone.
         </p>
         <div className="flex flex-col sm:flex-row gap-3 mt-10">
           <a href="https://www.upwork.com/freelancers/mahmouda299" target="_blank" rel="noopener noreferrer"
-             className="btn btn-lg btn-signal">Hire on Upwork <Arrow size={14}/></a>
-          <a href="mailto:contact@mahmoudamr.dev" className="btn btn-lg btn-ghost">Email me</a>
+             className="btn btn-lg btn-signal">Hire Mahmoud Amr on Upwork <Arrow size={14}/></a>
+          <a href="mailto:contact@mahmoudamr.dev" className="btn btn-lg btn-ghost">Email Mahmoud</a>
         </div>
       </div>
     </section>

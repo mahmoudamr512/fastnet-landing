@@ -377,6 +377,20 @@ const Footer = ({ go }) => (
           <span>PRIVACY</span><span>TERMS</span><span>SLA</span>
         </div>
       </div>
+
+      <div className="pt-5 mt-5 border-t border-white/[0.06] text-[12px] text-ink-300 leading-relaxed">
+        Showcase project — designed &amp; built by{' '}
+        <button onClick={() => go('about')} className="text-bone-100 underline underline-offset-4 hover:text-signal">
+          Mahmoud Amr
+        </button>
+        , senior software engineer based in Cairo, freelancing since 2016. Available on{' '}
+        <a href="https://www.upwork.com/freelancers/mahmouda299" target="_blank" rel="noopener noreferrer me"
+           className="text-bone-100 underline underline-offset-4 hover:text-signal">Upwork</a>{' '}·{' '}
+        <a href="https://www.linkedin.com/in/mahmoud-a-46818913b/" target="_blank" rel="noopener noreferrer me"
+           className="text-bone-100 underline underline-offset-4 hover:text-signal">LinkedIn</a>{' '}·{' '}
+        <a href="https://github.com/mahmoudamr512" target="_blank" rel="noopener noreferrer me"
+           className="text-bone-100 underline underline-offset-4 hover:text-signal">GitHub</a>.
+      </div>
     </div>
   </footer>
 );
