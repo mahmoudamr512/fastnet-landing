@@ -59,11 +59,22 @@ function App() {
     setMeta('meta[property="og:description"]', meta.desc);
     setMeta('meta[name="twitter:title"]', meta.title);
     setMeta('meta[name="twitter:description"]', meta.desc);
-    const canonical = document.querySelector('link[rel="canonical"]');
-    const ogUrl = document.querySelector('meta[property="og:url"]');
+    setMeta('meta[itemprop="name"]', meta.title);
+    setMeta('meta[itemprop="description"]', meta.desc);
+
     const url = `https://fastnet-landing.vercel.app${meta.path}`;
-    if (canonical) canonical.setAttribute('href', url);
+    let canonical = document.querySelector('link[rel="canonical"]');
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.setAttribute('rel', 'canonical');
+      document.head.appendChild(canonical);
+    }
+    canonical.setAttribute('href', url);
+
+    const ogUrl = document.querySelector('meta[property="og:url"]');
     if (ogUrl) ogUrl.setAttribute('content', url);
+    const twitterUrl = document.querySelector('meta[name="twitter:url"]');
+    if (twitterUrl) twitterUrl.setAttribute('content', url);
   }, [route]);
 
   // Browser history

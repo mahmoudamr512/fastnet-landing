@@ -80,4 +80,8 @@ if (existsSync(pub)) {
   console.log('→ public/ copied');
 }
 
+// 5. Prerender SPA routes to static HTML for SEO
+console.log('→ prerender');
+execSync('node prerender.mjs', { stdio: 'inherit', cwd: root });
+
 console.log('Build complete → dist/');
