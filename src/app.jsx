@@ -15,15 +15,15 @@ const ACCENT_MAP = {
 };
 
 const ROUTE_META = {
-  home:          { path: '/',              title: 'FastNet — Resilient 5G Internet · Showcase',                desc: 'Premium 5G internet brand showcase. React + Tailwind, mobile-first, with interactive product demos.' },
-  how:           { path: '/how-it-works',  title: 'How it works · FastNet Showcase',                            desc: 'Five-step technical breakdown — site survey, hardware, carrier-diverse routing, packet core, monitoring.' },
-  usecases:      { path: '/use-cases',     title: 'Use cases · FastNet Showcase',                                desc: 'Residential and business deployment scenarios for managed 5G internet.' },
-  pricing:       { path: '/pricing',       title: 'Pricing · FastNet Showcase',                                  desc: 'Two flat-rate plans — Failover and Primary — with optional add-ons.' },
-  checkout:      { path: '/checkout',      title: 'Checkout · FastNet Showcase',                                 desc: 'Five-step checkout flow with sticky order summary.' },
-  availability:  { path: '/availability',  title: 'Coverage check · FastNet Showcase',                           desc: 'ZIP-based 5G coverage check with carrier signal strengths.' },
-  consultation:  { path: '/consultation',  title: 'Consultation · FastNet Showcase',                             desc: 'Pick a day, fill the form, talk to an engineer.' },
-  dashboard:     { path: '/dashboard',     title: 'Customer dashboard preview · FastNet Showcase',               desc: 'Live throughput chart, simulate-outage button, event log, plan + network + support panels.' },
-  about:         { path: '/about',         title: 'About Mahmoud Amr · FastNet Showcase',                        desc: 'Senior product engineer building polished, conversion-focused web apps. Available on Upwork.' },
+  home:          { path: '/',              title: 'FastNet — Resilient 5G Internet · Built by Mahmoud Amr',     desc: 'Showcase landing site for a premium 5G internet brand — designed and built by Mahmoud Amr, senior software engineer based in Cairo.' },
+  how:           { path: '/how-it-works',  title: 'How it works · FastNet Showcase by Mahmoud Amr',              desc: 'Five-step technical breakdown of the FastNet showcase by Mahmoud Amr — site survey, hardware, carrier-diverse routing, packet core, monitoring.' },
+  usecases:      { path: '/use-cases',     title: 'Use cases · FastNet Showcase by Mahmoud Amr',                 desc: 'Residential and business deployment scenarios for the FastNet 5G showcase, designed and built by Mahmoud Amr in Cairo.' },
+  pricing:       { path: '/pricing',       title: 'Pricing · FastNet Showcase by Mahmoud Amr',                   desc: 'Two flat-rate plans for the FastNet showcase landing site by Mahmoud Amr — Failover and Primary, with optional add-ons and FAQ.' },
+  checkout:      { path: '/checkout',      title: 'Checkout · FastNet Showcase by Mahmoud Amr',                  desc: 'Five-step checkout flow with a sticky order summary — part of the FastNet showcase landing site by Mahmoud Amr.' },
+  availability:  { path: '/availability',  title: 'Coverage check · FastNet Showcase by Mahmoud Amr',            desc: 'ZIP-based 5G coverage checker with carrier signal strengths — interactive demo from the FastNet showcase by Mahmoud Amr.' },
+  consultation:  { path: '/consultation',  title: 'Consultation · FastNet Showcase by Mahmoud Amr',              desc: 'Calendar-based consultation booking demo with form validation — part of the FastNet showcase landing site by Mahmoud Amr.' },
+  dashboard:     { path: '/dashboard',     title: 'Customer dashboard preview · FastNet by Mahmoud Amr',         desc: 'Live throughput chart, simulate-outage demo, and event log — customer dashboard preview from the FastNet showcase by Mahmoud Amr.' },
+  about:         { path: '/about',         title: 'About Mahmoud Amr — Senior Software Engineer, Cairo',          desc: 'Mahmoud Amr — senior software engineer based in Cairo. Full-stack, AI and automation. Freelancing since 2016. Available on Upwork.' },
 };
 
 const PATH_TO_ROUTE = Object.fromEntries(Object.entries(ROUTE_META).map(([k, v]) => [v.path, k]));
