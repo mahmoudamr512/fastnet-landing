@@ -1,12 +1,15 @@
 import js from '@eslint/js';
+import tseslint from 'typescript-eslint';
 import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
 import globals from 'globals';
 
-export default [
+export default tseslint.config(
+  { ignores: ['dist/**', 'node_modules/**', '.vercel/**', 'coverage/**'] },
   js.configs.recommended,
+  ...tseslint.configs.recommended,
   {
-    files: ['src/**/*.{ts,tsx}'],
+    files: ['src/**/*.{ts,tsx}', 'tests/**/*.{ts,tsx}'],
     languageOptions: {
       ecmaVersion: 'latest',
       sourceType: 'module',
@@ -20,13 +23,16 @@ export default [
       ...reactHooks.configs.recommended.rules,
       'react/react-in-jsx-scope': 'off',
       'react/prop-types': 'off',
-      'no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
+      'react/no-unescaped-entities': 'off',
+      '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
     },
   },
   {
     files: ['scripts/**/*.{js,mjs}', '*.{js,mjs}'],
-    languageOptions: { ecmaVersion: 'latest', sourceType: 'module', globals: globals.node },
-    rules: { 'no-unused-vars': 'warn' },
-  },
-  { ignores: ['dist/**', 'node_modules/**', '.vercel/**'] },
-];
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+      globals: { ...globals.node, ...globals.browser },
+    },
+  }
+);

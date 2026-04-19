@@ -1,3 +1,4 @@
+/* eslint-env node, browser */
 // Prerender SPA routes to static HTML for SEO + scraper unfurls
 import { createServer } from 'node:http';
 import { readFile, stat, writeFile, mkdir } from 'node:fs/promises';
