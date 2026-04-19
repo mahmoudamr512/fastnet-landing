@@ -1,7 +1,10 @@
-// FastNet — Homepage sections below the hero
+import React from 'react';
+import { Logo, Arrow, SectionTag, Reveal, cn, type GoFn } from './primitives';
 
-const FailoverExplainer = ({ go }) => {
-  const [mode, setMode] = React.useState('failover');
+type Mode = 'failover' | 'primary';
+
+export const FailoverExplainer = ({ go }: { go: GoFn }) => {
+  const [mode, setMode] = React.useState<Mode>('failover');
 
   return (
     <section className="py-14 md:py-32 bg-bone-100 text-ink-900">
@@ -13,7 +16,7 @@ const FailoverExplainer = ({ go }) => {
             <h2 className="headline m-0 max-w-[14ch]">Failover or primary. The difference is everything.</h2>
 
             <div className="inline-flex gap-1 mt-12 p-1 bg-bone-200 rounded-full">
-              {[{ k: 'failover', l: 'Failover' }, { k: 'primary', l: 'Primary' }].map(t => (
+              {([{ k: 'failover', l: 'Failover' }, { k: 'primary', l: 'Primary' }] as const).map(t => (
                 <button key={t.k} onClick={() => setMode(t.k)} className={cn(
                   'px-5.5 py-2.5 rounded-full text-sm font-medium transition-all',
                   mode === t.k ? 'bg-ink-900 text-bone-100' : 'bg-transparent text-ink-500'
@@ -63,7 +66,7 @@ const FailoverExplainer = ({ go }) => {
   );
 };
 
-const FailoverDiagram = ({ mode }) => {
+const FailoverDiagram = ({ mode }: { mode: Mode }) => {
   const [simulateOutage, setSimulateOutage] = React.useState(false);
   const [switchMs, setSwitchMs] = React.useState(340);
 
@@ -253,7 +256,7 @@ const FailoverDiagram = ({ mode }) => {
   );
 };
 
-const Principles = () => {
+export const Principles = () => {
   const items = [
     { n: 'I',   title: 'Carrier-diverse by design',     body: 'Dual-SIM gateways run two independent carriers. A tower problem on one network is a non-event.' },
     { n: 'II',  title: 'Monitored, not just installed', body: 'Every Beacon reports back to our operations center every 30 seconds. We often fix problems before you notice.' },
@@ -289,7 +292,7 @@ const Principles = () => {
   );
 };
 
-const PullQuote = () => (
+export const PullQuote = () => (
   <section className="py-16 md:py-40 bg-bone-100 text-ink-900">
     <div className="container-app">
       <div className="max-w-[920px]">
@@ -310,7 +313,7 @@ const PullQuote = () => (
   </section>
 );
 
-const FinalCTA = ({ go }) => (
+export const FinalCTA = ({ go }: { go: GoFn }) => (
   <section className="relative overflow-hidden py-14 md:py-32 bg-ink-900 text-bone-100">
     <div className="absolute top-1/2 -right-[10%] -translate-y-1/2 w-[700px] h-[700px] pointer-events-none"
       style={{ background: 'radial-gradient(circle, var(--color-signal-soft) 0%, transparent 60%)' }}/>
@@ -335,7 +338,7 @@ const FinalCTA = ({ go }) => (
   </section>
 );
 
-const Footer = ({ go }) => (
+export const Footer = ({ go }: { go: GoFn }) => (
   <footer className="bg-ink-900 text-ink-200 pt-16 pb-10 border-t border-white/[0.06]">
     <div className="container-app">
       <div className="grid grid-cols-2 md:grid-cols-[2fr_1fr_1fr_1fr_1fr] gap-8 md:gap-12 mb-12 md:mb-16">
@@ -395,4 +398,3 @@ const Footer = ({ go }) => (
   </footer>
 );
 
-Object.assign(window, { FailoverExplainer, Principles, PullQuote, FinalCTA, Footer });

@@ -2,18 +2,45 @@
   "name": "fastnet-landing",
   "version": "1.0.0",
   "private": true,
-  "description": "FastNet — resilient 5G internet landing site",
+  "description": "FastNet — resilient 5G internet landing site · showcase by Mahmoud Amr",
+  "author": "Mahmoud Amr <contact@mahmoudamr.dev>",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
-    "build": "node build.mjs",
-    "dev": "node build.mjs && node serve.mjs",
-    "preview": "node serve.mjs"
+    "build": "node scripts/build.mjs",
+    "dev": "node scripts/build.mjs && node scripts/serve.mjs",
+    "preview": "node scripts/serve.mjs",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
   },
   "devDependencies": {
+    "@eslint/js": "9.15.0",
     "@sparticuz/chromium": "^147.0.0",
     "@tailwindcss/cli": "^4.2.2",
+    "@testing-library/jest-dom": "6.6.3",
+    "@testing-library/react": "16.0.1",
+    "@types/react": "18.3.12",
+    "@types/react-dom": "18.3.1",
     "esbuild": "^0.25.0",
+    "eslint": "9.15.0",
+    "eslint-plugin-react": "7.37.2",
+    "eslint-plugin-react-hooks": "5.0.0",
+    "globals": "15.12.0",
+    "jsdom": "25.0.1",
+    "prettier": "3.3.3",
     "puppeteer": "^24.41.0",
     "puppeteer-core": "^24.41.0",
-    "tailwindcss": "^4.2.2"
+    "tailwindcss": "^4.2.2",
+    "typescript": "5.6.3",
+    "vitest": "2.1.5"
   }
 }

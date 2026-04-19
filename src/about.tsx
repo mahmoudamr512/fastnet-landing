@@ -1,4 +1,4 @@
-// FastNet — About Mahmoud Amr
+import { SectionTag, Arrow, type GoFn } from './primitives';
 
 const SOCIAL_LINKS = [
   { label: 'Upwork',   url: 'https://www.upwork.com/freelancers/mahmouda299',  handle: 'mahmouda299' },
@@ -15,7 +15,7 @@ const STACK = [
   ['Design ops',   'Figma → production · design systems · motion · accessibility'],
 ];
 
-const About = ({ go }) => (
+export const About = ({ go }: { go: GoFn }) => (
   <div className="bg-bone-100 text-ink-900">
     <section className="pt-20 pb-12 md:pt-30 md:pb-20 bg-ink-900 text-bone-100 relative overflow-hidden">
       <div className="absolute top-1/2 -right-[10%] -translate-y-1/2 w-[700px] h-[700px] pointer-events-none"
@@ -147,4 +147,3 @@ const About = ({ go }) => (
   </div>
 );
 
-window.About = About;

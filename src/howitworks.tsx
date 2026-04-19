@@ -1,4 +1,5 @@
-// FastNet — How it works deep dive page
+import { SectionTag, Reveal, cn, type GoFn } from './primitives';
+import { FinalCTA } from './sections';
 
 const HOW_STEPS = [
   {
@@ -53,7 +54,7 @@ const HOW_STEPS = [
   },
 ];
 
-const HowItWorks = ({ go }) => (
+export const HowItWorks = ({ go }: { go: GoFn }) => (
   <div className="bg-bone-100 text-ink-900">
     <section className="pt-20 pb-16 md:pt-30 md:pb-20 bg-ink-900 text-bone-100">
       <div className="container-app">
@@ -105,4 +106,3 @@ const HowItWorks = ({ go }) => (
   </div>
 );
 
-window.HowItWorks = HowItWorks;

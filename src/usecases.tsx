@@ -1,6 +1,11 @@
-// FastNet — Use cases page
+import React from 'react';
+import { SectionTag, Reveal, cn, type GoFn } from './primitives';
+import { FinalCTA } from './sections';
 
-const USE_CASES = {
+type Category = 'residential' | 'business';
+interface UseCase { tag: string; title: string; body: string; stats: [string, string][] }
+
+const USE_CASES: Record<Category, UseCase[]> = {
   residential: [
     { tag: 'Primary',    title: 'Remote estates & new construction',
       body: 'Properties where fiber isn\'t scheduled to arrive for 12–36 months — or ever. FastNet Primary delivers the throughput a modern smart home expects.',
@@ -31,8 +36,8 @@ const USE_CASES = {
   ],
 };
 
-const UseCases = ({ go }) => {
-  const [category, setCategory] = React.useState('residential');
+export const UseCases = ({ go }: { go: GoFn }) => {
+  const [category, setCategory] = React.useState<Category>('residential');
 
   return (
     <div className="bg-bone-100 text-ink-900">
@@ -44,7 +49,7 @@ const UseCases = ({ go }) => {
           </h1>
 
           <div className="inline-flex gap-1 mt-12 p-1 bg-bone-200 rounded-full">
-            {[{ k: 'residential', l: 'Residential' }, { k: 'business', l: 'Business' }].map(t => (
+            {([{ k: 'residential', l: 'Residential' }, { k: 'business', l: 'Business' }] as const).map(t => (
               <button key={t.k} onClick={() => setCategory(t.k)} className={cn(
                 'px-7 py-3 rounded-full text-[15px] font-medium transition-all',
                 category === t.k ? 'bg-ink-900 text-bone-100' : 'bg-transparent text-ink-500'
@@ -89,4 +94,3 @@ const UseCases = ({ go }) => {
   );
 };
 
-window.UseCases = UseCases;

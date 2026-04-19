@@ -1,10 +1,12 @@
 # FastNet
 
-> Resilient 5G internet for homes, businesses, and the systems that run them.
+> Premium 5G internet landing site — showcase project by **Mahmoud Amr**.
 
-A polished single-page landing site with eight navigable views: hardware-led product hero, technical deep-dive, residential vs. business use cases, pricing, a five-step checkout, ZIP-based availability lookup, consultation scheduler, and a live customer dashboard preview.
+**Live:** [fastnet-landing.vercel.app](https://fastnet-landing.vercel.app)
+**Source:** [github.com/mahmoudamr512/fastnet-landing](https://github.com/mahmoudamr512/fastnet-landing)
+**About me:** [fastnet-landing.vercel.app/about](https://fastnet-landing.vercel.app/about)
 
-Built as a React 18 SPA, bundled and minified with esbuild, deployed as static assets on Vercel.
+React 18 + TypeScript + Tailwind v4 single-page site with eight navigable views: hardware-led product hero, technical deep-dive, residential vs. business use cases, pricing, multi-step checkout, ZIP availability checker, calendar-based consultation scheduler, and a live customer dashboard preview. Bundled with esbuild, prerendered to static HTML for SEO, deployed to Vercel.
 
 ---
 
@@ -12,177 +14,138 @@ Built as a React 18 SPA, bundled and minified with esbuild, deployed as static a
 
 ### Home — Product hero
 
-The default hero showcases the **Beacon G2** gateway with a live signal display, live throughput readout, and four spec callouts wired to the chassis with dashed leader lines.
+![Home hero](docs/screenshots/01-home-hero.png)
 
-![Home — Product hero](docs/screenshots/01-home-hero.png)
+### Interactive failover diagram, pricing, mobile
 
-Below the fold: an interactive failover diagram that auto-cycles between *ISP online / FastNet standby* and *ISP outage / FastNet active*, the principles grid, a pull-quote testimonial, and the final CTA.
-
-![Home — full page](docs/screenshots/02-home-full.png)
-
-### How it works
-
-A five-step technical breakdown — site survey, gateway hardware, carrier-diverse routing, private packet core, and 24/7 monitoring — each with a spec table.
-
-![How it works](docs/screenshots/03-how-it-works.png)
-
-### Use cases
-
-Residential / Business toggle. Each segment lists four typical deployments with measurable outcomes (download, switchover time, integrations, etc.).
-
-![Use cases](docs/screenshots/04-usecases.png)
-
-### Pricing
-
-Two flat-rate plans, an add-ons matrix, and an FAQ block.
-
-![Pricing](docs/screenshots/05-pricing.png)
-
-### Checkout
-
-Five-step flow — plan, address & coverage, install scheduling, payment, confirmation — with a sticky order-summary sidebar.
-
-![Checkout](docs/screenshots/09-checkout.png)
-
-### Availability
-
-Dark-themed ZIP entry with an animated radar backdrop. Submitting returns a coverage verdict and per-carrier signal strengths.
-
-![Availability](docs/screenshots/07-availability.png)
-
-### Consultation
-
-Day/time picker with a contact form. Click any day card to filter time slots; click a slot to enable the booking CTA.
-
-![Consultation](docs/screenshots/08-consultation.png)
-
-### Mobile
-
-Mobile-first layout: collapsing grids, touch-friendly tap targets, full-screen menu sheet behind a hamburger trigger, condensed type scale, sticky-removed checkout sidebar.
-
-| Home | Pricing | Consultation | Menu |
-|---|---|---|---|
-| ![Mobile home](docs/screenshots/10-mobile-home.png) | ![Mobile pricing](docs/screenshots/12-mobile-pricing.png) | ![Mobile consultation](docs/screenshots/13-mobile-consultation.png) | ![Mobile menu](docs/screenshots/11-mobile-menu.png) |
-
-### Dashboard preview
-
-Customer-facing telemetry: live latency, 24-hour throughput chart with failover annotations, recent events, plan summary, network details, and assigned engineer.
-
-![Dashboard](docs/screenshots/06-dashboard.png)
+| Dashboard | Pricing | Mobile |
+| --- | --- | --- |
+| ![](docs/screenshots/06-dashboard.png) | ![](docs/screenshots/05-pricing.png) | ![](docs/screenshots/10-mobile-home.png) |
 
 ---
 
 ## Features
 
-- **Three hero variants** — *Editorial* (typographic), *Product* (Beacon G2 device shot, default), *Signal* (animated canvas with concentric pulse rings). Switch live from the Tweaks panel.
-- **Interactive failover diagram** — auto-cycles network states with animated packet flow, status pills, and live metrics strip.
-- **5-step checkout** — plan select with add-ons, address + coverage estimate, install scheduler, payment, confirmation. Sticky order-summary sidebar.
+- **Three hero variants** — editorial / product / signal. Switch live from the Tweaks panel.
+- **Interactive failover diagram** — auto-cycles ISP-online / outage states with animated packet flow + live metrics.
+- **Five-step checkout** — plan + add-ons, address with coverage estimate, install scheduler, payment, confirmation. Sticky order-summary sidebar.
 - **ZIP availability checker** — signed coverage verdict + per-carrier signal bars.
-- **Live dashboard** — 24h throughput chart, event log, "Simulate outage" button that animates a real failover event into the chart.
-- **Consultation scheduler** — clickable day cards, time-slot filtering, contact form with property type + need pickers.
+- **Live dashboard** — 24h throughput chart, event log, simulate-outage button that animates a real failover event into the chart.
+- **Calendar consultation scheduler** — day picker filters time slots, contact form with property-type and need pickers.
 - **Tweaks panel** — bottom-right toggle: hero variant · accent color (lime / amber / cyan / coral) · display type (serif / sans) · pricing layout.
-- **Persistent route** — last-visited page restored from `localStorage`.
-- **Dark theme** auto-applied to Availability and Dashboard.
-
----
-
-## Design system
-
-| Token | Value |
-|------|------|
-| Ink (canvas dark) | `#0A0B0D` |
-| Bone (canvas light) | `#F4F1EC` |
-| Signal accent | `oklch(0.86 0.17 118)` (lime; switchable) |
-| Display | Instrument Serif |
-| UI | Inter Tight |
-| Mono | JetBrains Mono |
-
-Editorial-luxury aesthetic: near-black canvas, warm bone whites, one signal accent that pulses on live elements.
+- **Mobile-first** — hamburger menu, full-screen menu sheet, responsive grids, touch-friendly targets.
+- **Real URLs** — `pushState` routing, per-route static HTML via prerender, per-route canonical + OG meta.
 
 ---
 
 ## Stack
 
-- **React 18** (UMD `.production.min.js` from CDN)
-- **esbuild** for JSX transform + minification (no Webpack, no Vite, no babel-standalone)
-- **Static output** — single `index.html` + ~100KB minified `bundle.js`
-- **Vercel** for hosting; works on any static host (Netlify, S3+CloudFront, GH Pages, etc.)
+| Area | Choice |
+| --- | --- |
+| UI | React 18 (TypeScript), bundled with esbuild |
+| Styling | Tailwind CSS v4 with `@theme` design tokens |
+| SEO | Puppeteer-driven prerender (static HTML per route) |
+| Build | `scripts/build.mjs` — Tailwind → esbuild → HTML rewrite → prerender |
+| Tests | Vitest + React Testing Library + jsdom |
+| Lint / format | ESLint 9 (flat config) + Prettier |
+| Hosting | Vercel (auto-deploy on push) |
 
-No runtime framework dependencies. Build runs in under a second.
-
----
-
-## Run locally
-
-```bash
-npm install
-npm run dev
-```
-
-Opens on `http://localhost:5173`.
-
-## Build
-
-```bash
-npm run build
-```
-
-Outputs `dist/` — `index.html` + `bundle.js`. Drop into any static host.
-
-## Deploy to Vercel
-
-Two options:
-
-**Git integration** — push to GitHub, import the repo at [vercel.com/new](https://vercel.com/new). `vercel.json` is preconfigured (build command, output directory, immutable cache headers on `bundle.js`).
-
-**CLI**
-
-```bash
-npm i -g vercel
-vercel        # link + preview
-vercel --prod # production deploy
-```
+No runtime framework. Final output: 1 `index.html` per route (9 total) + 1 bundled `bundle.js` + 1 `styles.css`. Everything else is static assets.
 
 ---
 
-## Project layout
+## Architecture
 
 ```
 src/
-  app.jsx           root component + route state
-  primitives.jsx    Logo, Arrow, Reveal, Ticker, StatusPill, SignalIcon, SectionTag
-  nav.jsx           top nav
-  hero.jsx          three hero variants (editorial / product / signal)
-  sections.jsx      home page sections (failover explainer, principles, quote, CTA, footer)
-  howitworks.jsx    /how
-  usecases.jsx      /usecases  (residential / business toggle)
-  pricing.jsx       /pricing   (cards + add-ons + FAQ)
-  checkout.jsx      /checkout  (5-step flow)
-  availability.jsx  /availability
-  consultation.jsx  /consultation
-  dashboard.jsx     /dashboard (live preview)
-  tweaks.jsx        floating tweaks panel
-build.mjs           esbuild transform + HTML rewrite
-serve.mjs           tiny Node static server for local preview
-vercel.json         Vercel build config + cache headers
-FastNet.html        source HTML (build input — final output lands in dist/)
+  main.tsx        entry — mounts <App /> to #root
+  app.tsx         route state, meta sync, theme toggle, hero variant dispatch
+  primitives.tsx  Logo, Arrow, SignalIcon, SectionTag, Reveal, Ticker,
+                  StatusPill, AuthorBadge, cn() helper, shared types
+  nav.tsx         sticky header + mobile sheet menu
+  hero.tsx        3 hero variants (Editorial / Product / Signal)
+  sections.tsx    FailoverExplainer, FailoverDiagram, Principles, PullQuote,
+                  FinalCTA, Footer
+  howitworks.tsx  /how-it-works page
+  usecases.tsx    /use-cases page  (residential / business toggle)
+  pricing.tsx     /pricing page    (cards + add-ons + FAQ)
+  checkout.tsx    /checkout page   (5-step flow, extracted sub-components)
+  availability.tsx   /availability page
+  consultation.tsx   /consultation page
+  dashboard.tsx      /dashboard preview page
+  about.tsx          /about Mahmoud Amr page
+  tweaks.tsx         floating Tweaks panel
+  input.css          Tailwind @theme tokens + component classes
+
+scripts/
+  build.mjs       Tailwind + esbuild + HTML rewrite + prerender orchestrator
+  prerender.mjs   Headless Chrome snapshot of each route → dist/<route>/index.html
+  serve.mjs       Local static preview
+
+tests/
+  primitives.test.tsx   smoke tests for shared primitives
+  setup.ts              jest-dom matchers
+
+public/               Static assets (favicon, og.png, mahmoud.jpg, sitemap.xml,
+                      robots.txt, Google Search Console verification)
+FastNet.html          HTML entry template (transformed by build)
+tsconfig.json         Strict TS config
+eslint.config.js      ESLint 9 flat config
+.prettierrc.json      Prettier config
+vitest.config.ts      Vitest + jsdom setup
+vercel.json           Hosting config + cache headers + rewrites
 ```
 
+### Design system
+
+Tokens defined once in `src/input.css` via Tailwind v4 `@theme`:
+
+| Token | Value |
+| --- | --- |
+| Ink (canvas dark) | `#0A0B0D` |
+| Bone (canvas light) | `#F4F1EC` |
+| Signal accent | `oklch(0.86 0.17 118)` (lime; accent switches via Tweaks panel) |
+| Display | Instrument Serif |
+| UI | Inter Tight |
+| Mono | JetBrains Mono |
+
 ---
 
-## Tweaks panel
+## Develop
 
-Open the floating toggle bottom-right to swap, live:
+```bash
+nvm use          # reads .nvmrc — Node 20
+npm install
+npm run dev      # build once then serve dist/ on :5173
+```
 
-- **Hero variant** — editorial · product · signal
-- **Accent color** — lime · amber · cyan · coral
-- **Display typeface** — serif (Instrument Serif) · sans (Inter Tight)
-- **Pricing layout** — cards · table
+Scripts:
 
-To change the boot defaults, edit `TWEAK_DEFAULTS` in `src/app.jsx`.
+```bash
+npm run build        # Tailwind + esbuild + prerender → dist/
+npm run preview      # Serve prebuilt dist/
+npm run typecheck    # tsc --noEmit
+npm run lint         # ESLint
+npm run format       # Prettier write
+npm test             # Vitest
+```
+
+## Deploy
+
+Push to `main` — Vercel runs `npm run build` and ships `dist/`. `vercel.json` preconfigures rewrites, cache headers, and security headers.
 
 ---
+
+## About the author
+
+**Mahmoud Amr** — senior software engineer · full-stack, AI & automation · based in Cairo · freelancing since 2016.
+
+Available for contract work:
+- [Upwork](https://www.upwork.com/freelancers/mahmouda299)
+- [LinkedIn](https://www.linkedin.com/in/mahmoud-a-46818913b/)
+- [GitHub](https://github.com/mahmoudamr512)
+- [contact@mahmoudamr.dev](mailto:contact@mahmoudamr.dev)
 
 ## License
 
-Private project — not licensed for external reuse.
+[MIT](./LICENSE)

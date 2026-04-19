@@ -1,38 +1,46 @@
-// FastNet — Tweaks panel
+import React from 'react';
+import { cn } from './primitives';
 
-const HERO_OPTS = [['editorial', 'Editorial'], ['product', 'Product'], ['signal', 'Signal']];
-const ACCENT_SWATCHES = [
+export interface TweakState {
+  hero: 'editorial' | 'product' | 'signal';
+  accent: 'lime' | 'amber' | 'cyan' | 'coral';
+  displayType: 'serif' | 'sans';
+  pricingLayout: 'cards' | 'compare';
+}
+
+const HERO_OPTS: Array<[string, string]> = [['editorial', 'Editorial'], ['product', 'Product'], ['signal', 'Signal']];
+const ACCENT_SWATCHES: Array<[string, string]> = [
   ['lime',  'oklch(0.86 0.17 118)'],
   ['amber', 'oklch(0.82 0.16 85)'],
   ['cyan',  'oklch(0.82 0.12 220)'],
   ['coral', 'oklch(0.78 0.14 30)'],
 ];
-const TYPE_OPTS = [['serif', 'Serif'], ['sans', 'Sans']];
-const LAYOUT_OPTS = [['cards', 'Cards'], ['compare', 'Compare']];
+const TYPE_OPTS: Array<[string, string]> = [['serif', 'Serif'], ['sans', 'Sans']];
+const LAYOUT_OPTS: Array<[string, string]> = [['cards', 'Cards'], ['compare', 'Compare']];
 
-const Pill = ({ active, children, onClick }) => (
+const Pill = ({ active, children, onClick }: { active: boolean; children: React.ReactNode; onClick: () => void }) => (
   <button onClick={onClick} className={cn(
     'flex-1 py-1.5 text-[11px] font-medium rounded-full',
     active ? 'bg-signal text-ink-900' : 'bg-transparent text-ink-200'
   )}>{children}</button>
 );
 
-const Group = ({ label, children }) => (
+const Group = ({ label, children }: { label: string; children: React.ReactNode }) => (
   <div>
     <div className="mono-label mb-2">{label}</div>
     {children}
   </div>
 );
 
-const PillRow = ({ children }) => (
+const PillRow = ({ children }: { children: React.ReactNode }) => (
   <div className="flex gap-1 p-0.5 bg-white/[0.06] rounded-full">{children}</div>
 );
 
-const Tweaks = ({ tweaks, setTweaks }) => {
+export const Tweaks = ({ tweaks, setTweaks }: { tweaks: TweakState; setTweaks: (t: TweakState) => void }) => {
   const [open, setOpen] = React.useState(false);
 
   React.useEffect(() => {
-    const handler = (e) => {
+    const handler = (e: MessageEvent) => {
       if (e.data?.type === '__activate_edit_mode') setOpen(true);
       if (e.data?.type === '__deactivate_edit_mode') setOpen(false);
     };
@@ -41,7 +49,7 @@ const Tweaks = ({ tweaks, setTweaks }) => {
     return () => window.removeEventListener('message', handler);
   }, []);
 
-  const update = (k, v) => {
+  const update = <K extends keyof TweakState>(k: K, v: TweakState[K]) => {
     const next = { ...tweaks, [k]: v };
     setTweaks(next);
     window.parent.postMessage({ type: '__edit_mode_set_keys', edits: { [k]: v } }, '*');
@@ -66,7 +74,7 @@ const Tweaks = ({ tweaks, setTweaks }) => {
         <Group label="Hero variant">
           <PillRow>
             {HERO_OPTS.map(o => (
-              <Pill key={o[0]} active={tweaks.hero === o[0]} onClick={() => update('hero', o[0])}>{o[1]}</Pill>
+              <Pill key={o[0]} active={tweaks.hero === o[0]} onClick={() => update('hero', o[0] as TweakState['hero'])}>{o[1]}</Pill>
             ))}
           </PillRow>
         </Group>
@@ -74,7 +82,7 @@ const Tweaks = ({ tweaks, setTweaks }) => {
         <Group label="Accent color">
           <div className="flex gap-2">
             {ACCENT_SWATCHES.map(s => (
-              <button key={s[0]} onClick={() => update('accent', s[0])}
+              <button key={s[0]} onClick={() => update('accent', s[0] as TweakState['accent'])}
                 className={cn(
                   'w-9 h-9 rounded-lg border-2',
                   tweaks.accent === s[0] ? 'border-bone-100' : 'border-transparent'
@@ -90,7 +98,7 @@ const Tweaks = ({ tweaks, setTweaks }) => {
         <Group label="Display type">
           <PillRow>
             {TYPE_OPTS.map(o => (
-              <Pill key={o[0]} active={tweaks.displayType === o[0]} onClick={() => update('displayType', o[0])}>{o[1]}</Pill>
+              <Pill key={o[0]} active={tweaks.displayType === o[0]} onClick={() => update('displayType', o[0] as TweakState['displayType'])}>{o[1]}</Pill>
             ))}
           </PillRow>
         </Group>
@@ -98,7 +106,7 @@ const Tweaks = ({ tweaks, setTweaks }) => {
         <Group label="Pricing layout">
           <PillRow>
             {LAYOUT_OPTS.map(o => (
-              <Pill key={o[0]} active={tweaks.pricingLayout === o[0]} onClick={() => update('pricingLayout', o[0])}>{o[1]}</Pill>
+              <Pill key={o[0]} active={tweaks.pricingLayout === o[0]} onClick={() => update('pricingLayout', o[0] as TweakState['pricingLayout'])}>{o[1]}</Pill>
             ))}
           </PillRow>
         </Group>
@@ -107,4 +115,3 @@ const Tweaks = ({ tweaks, setTweaks }) => {
   );
 };
 
-window.Tweaks = Tweaks;

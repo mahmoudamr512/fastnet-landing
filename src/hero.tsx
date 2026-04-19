@@ -1,6 +1,9 @@
-// FastNet — Hero (3 variants switchable via Tweaks)
+import React from 'react';
+import { Arrow, Ticker, cn, type GoFn } from './primitives';
 
-const HeroEditorial = ({ go }) => (
+interface HeroProps { go: GoFn }
+
+export const HeroEditorial = ({ go }: HeroProps) => (
   <section className="relative overflow-hidden py-14 md:py-20 md:pb-32 bg-ink-900 text-bone-100">
     <div className="absolute inset-0 pointer-events-none"
       style={{
@@ -57,7 +60,7 @@ const HeroEditorial = ({ go }) => (
   </section>
 );
 
-const HeroProduct = ({ go }) => (
+export const HeroProduct = ({ go }: HeroProps) => (
   <section className="relative overflow-hidden py-14 md:py-20 bg-ink-900 text-bone-100">
     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[30%] w-[900px] h-[900px] pointer-events-none"
       style={{ background: 'radial-gradient(circle, var(--color-signal-soft) 0%, transparent 60%)' }}/>
@@ -221,7 +224,14 @@ const HeroProduct = ({ go }) => (
   </section>
 );
 
-const Callout = ({ className, header, body, withDot }) => (
+interface CalloutProps {
+  className?: string;
+  colorVar?: string;
+  header: string;
+  body: string;
+  withDot?: boolean;
+}
+const Callout = ({ className, header, body, withDot }: CalloutProps) => (
   <div className={cn(
     'absolute px-3.5 py-2.5 rounded-[10px] border border-white/10 bg-ink-900/75 backdrop-blur-md',
     'font-mono text-[11px] tracking-wider z-[3] items-center gap-2.5',
@@ -236,15 +246,16 @@ const Callout = ({ className, header, body, withDot }) => (
   </div>
 );
 
-const HeroSignal = ({ go }) => {
-  const canvasRef = React.useRef(null);
+export const HeroSignal = ({ go }: HeroProps) => {
+  const canvasRef = React.useRef<HTMLCanvasElement | null>(null);
 
   React.useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
+    if (!ctx) return;
     const dpr = window.devicePixelRatio || 1;
-    let w, h;
+    let w = 0, h = 0;
     const resize = () => {
       const rect = canvas.getBoundingClientRect();
       w = rect.width; h = rect.height;
@@ -254,7 +265,7 @@ const HeroSignal = ({ go }) => {
     resize();
     window.addEventListener('resize', resize);
 
-    let raf;
+    let raf = 0;
     let t = 0;
     const draw = () => {
       t += 0.008;
@@ -350,4 +361,3 @@ const HeroSignal = ({ go }) => {
   );
 };
 
-Object.assign(window, { HeroEditorial, HeroProduct, HeroSignal });

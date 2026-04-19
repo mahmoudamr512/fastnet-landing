@@ -1,6 +1,10 @@
-// FastNet — Consultation scheduler
+import React from 'react';
+import { SectionTag, Arrow, cn, type GoFn } from './primitives';
 
-const SLOTS = [
+interface Slot { day: string; date: string; times: string[] }
+interface SelectedSlot extends Slot { time: string }
+
+const SLOTS: Slot[] = [
   { day: 'Mon', date: 'Apr 21', times: ['10:00', '13:00', '15:30'] },
   { day: 'Tue', date: 'Apr 22', times: ['09:00', '11:30', '14:00'] },
   { day: 'Wed', date: 'Apr 23', times: ['10:30', '13:30', '16:00'] },
@@ -8,15 +12,20 @@ const SLOTS = [
   { day: 'Fri', date: 'Apr 25', times: ['10:00', '13:00'] },
 ];
 
-const Consultation = ({ go }) => {
-  const [form, setForm] = React.useState({
+interface Form {
+  name: string; email: string; phone: string; address: string;
+  type: string; sqft: string; need: string; notes: string;
+}
+
+export const Consultation = ({ go }: { go: GoFn }) => {
+  const [form, setForm] = React.useState<Form>({
     name: '', email: '', phone: '', address: '', type: 'residential', sqft: '', need: 'failover', notes: '',
   });
-  const [slot, setSlot] = React.useState(null);
-  const [selectedDay, setSelectedDay] = React.useState(null);
+  const [slot, setSlot] = React.useState<SelectedSlot | null>(null);
+  const [selectedDay, setSelectedDay] = React.useState<string | null>(null);
   const [submitted, setSubmitted] = React.useState(false);
 
-  const pickDay = (d) => {
+  const pickDay = (d: Slot) => {
     setSelectedDay(d.date);
     if (slot && slot.date !== d.date) setSlot(null);
   };
@@ -175,4 +184,3 @@ const Consultation = ({ go }) => {
   );
 };
 
-window.Consultation = Consultation;

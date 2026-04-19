@@ -1,17 +1,21 @@
-// FastNet — Availability check
+import React from 'react';
+import { SectionTag, SignalIcon, Arrow, cn, type GoFn } from './primitives';
 
-const Availability = ({ go }) => {
+interface Carrier { name: string; signal: number; bands: string }
+interface Result { verdict: 'qualified' | 'marginal'; carriers: Carrier[]; peakMbps: number }
+
+export const Availability = ({ go }: { go: GoFn }) => {
   const [zip, setZip] = React.useState('');
   const [checking, setChecking] = React.useState(false);
-  const [result, setResult] = React.useState(null);
+  const [result, setResult] = React.useState<Result | null>(null);
 
   const check = () => {
     if (zip.length < 5) return;
     setChecking(true);
     setResult(null);
     setTimeout(() => {
-      const sum = zip.split('').reduce((a, c) => a + parseInt(c) || 0, 0);
-      const verdict = sum % 4 === 0 ? 'marginal' : 'qualified';
+      const sum = zip.split('').reduce((a, c) => a + (parseInt(c, 10) || 0), 0);
+      const verdict: 'qualified' | 'marginal' = sum % 4 === 0 ? 'marginal' : 'qualified';
       setResult({
         verdict,
         carriers: [
@@ -115,4 +119,3 @@ const Availability = ({ go }) => {
   );
 };
 
-window.Availability = Availability;

@@ -1,6 +1,7 @@
-// FastNet — Account dashboard preview
+import React from 'react';
+import { StatusPill, type GoFn } from './primitives';
 
-const Dashboard = ({ go }) => {
+export const Dashboard = ({ go: _go }: { go: GoFn }) => {
   const [liveLatency, setLiveLatency] = React.useState(18);
   const [primaryOnline, setPrimaryOnline] = React.useState(true);
 
@@ -119,4 +120,3 @@ const Dashboard = ({ go }) => {
   );
 };
 
-window.Dashboard = Dashboard;

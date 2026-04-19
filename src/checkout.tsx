@@ -1,6 +1,11 @@
-// FastNet — Checkout flow (multi-step)
+import React from 'react';
+import { SectionTag, Arrow, cn, type GoFn } from './primitives';
+import { PLANS } from './pricing';
 
-const ADDON_LIST = [
+type AddonKey = 'staticIp' | 'privateEgress' | 'wifi7';
+type AddonState = Record<AddonKey, boolean>;
+
+const ADDON_LIST: Array<{ key: AddonKey; label: string; price: number }> = [
   { key: 'staticIp',      label: 'Static IP block', price: 25 },
   { key: 'privateEgress', label: 'Private egress', price: 40 },
   { key: 'wifi7',         label: 'Wi-Fi 7 mesh (up to 5 APs)', price: 75 },
@@ -8,12 +13,18 @@ const ADDON_LIST = [
 
 const STEPS = ['Plan', 'Address', 'Install', 'Payment', 'Confirm'];
 
-const Checkout = ({ go, planId, setPlanId }) => {
+interface CheckoutProps {
+  go: GoFn;
+  planId: string;
+  setPlanId: (id: string) => void;
+}
+
+export const Checkout = ({ go, planId, setPlanId }: CheckoutProps) => {
   const [step, setStep] = React.useState(1);
   const [address, setAddress] = React.useState({ street: '', unit: '', city: '', zip: '' });
   const [install, setInstall] = React.useState({ date: 'next-week', window: 'morning', contact: '' });
   const [payment, setPayment] = React.useState({ name: '', email: '', card: '' });
-  const [addons, setAddons] = React.useState({ staticIp: false, privateEgress: false, wifi7: false });
+  const [addons, setAddons] = React.useState<AddonState>({ staticIp: false, privateEgress: false, wifi7: false });
 
   const plan = PLANS.find(p => p.id === planId) || PLANS[1];
   const addonsTotal = ADDON_LIST.reduce((a, it) => a + (addons[it.key] ? it.price : 0), 0);
@@ -110,7 +121,10 @@ const Checkout = ({ go, planId, setPlanId }) => {
   );
 };
 
-const StepPlan = ({ planId, setPlanId, addons, setAddons }) => (
+const StepPlan = ({ planId, setPlanId, addons, setAddons }: {
+  planId: string; setPlanId: (id: string) => void;
+  addons: AddonState; setAddons: React.Dispatch<React.SetStateAction<AddonState>>;
+}) => (
   <div>
     <h2 className="headline m-0 mb-2">Choose your plan</h2>
     <p className="body text-ink-400 mb-8">You can change this later, before install.</p>
@@ -162,7 +176,8 @@ const StepPlan = ({ planId, setPlanId, addons, setAddons }) => (
   </div>
 );
 
-const StepAddress = ({ address, setAddress }) => (
+type Address = { street: string; unit: string; city: string; zip: string };
+const StepAddress = ({ address, setAddress }: { address: Address; setAddress: React.Dispatch<React.SetStateAction<Address>> }) => (
   <div>
     <h2 className="headline m-0 mb-2">Install address</h2>
     <p className="body text-ink-400 mb-8">We'll verify coverage here. No equipment ships until confirmed.</p>
@@ -193,7 +208,8 @@ const StepAddress = ({ address, setAddress }) => (
   </div>
 );
 
-const StepInstall = ({ install, setInstall }) => (
+type Install = { date: string; window: string; contact: string };
+const StepInstall = ({ install, setInstall }: { install: Install; setInstall: React.Dispatch<React.SetStateAction<Install>> }) => (
   <div>
     <h2 className="headline m-0 mb-2">Schedule install</h2>
     <p className="body text-ink-400 mb-8">A FastNet engineer will be on site for 60–120 minutes.</p>
@@ -236,7 +252,8 @@ const StepInstall = ({ install, setInstall }) => (
   </div>
 );
 
-const StepPayment = ({ payment, setPayment }) => (
+type Payment = { name: string; email: string; card: string };
+const StepPayment = ({ payment, setPayment }: { payment: Payment; setPayment: React.Dispatch<React.SetStateAction<Payment>> }) => (
   <div>
     <h2 className="headline m-0 mb-2">Payment</h2>
     <p className="body text-ink-400 mb-8">First charge on install day. No authorization hold.</p>
@@ -256,7 +273,7 @@ const StepPayment = ({ payment, setPayment }) => (
   </div>
 );
 
-const StepConfirm = ({ go, reset }) => (
+const StepConfirm = ({ go, reset }: { go: GoFn; reset: () => void }) => (
   <div className="text-center py-10">
     <div className="w-20 h-20 rounded-full bg-signal flex items-center justify-center mx-auto mb-6"
       style={{ boxShadow: '0 0 40px var(--color-signal-soft)' }}>
@@ -278,4 +295,3 @@ const StepConfirm = ({ go, reset }) => (
   </div>
 );
 
-window.Checkout = Checkout;

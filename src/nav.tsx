@@ -1,6 +1,13 @@
-// FastNet — Top navigation
+import React from 'react';
+import { Logo, Arrow, cn, type GoFn } from './primitives';
 
-const Nav = ({ current, go, theme }) => {
+interface NavProps {
+  current: string;
+  go: GoFn;
+  theme: 'light' | 'dark';
+}
+
+export const Nav = ({ current, go, theme }: NavProps) => {
   const [scrolled, setScrolled] = React.useState(false);
   const [menuOpen, setMenuOpen] = React.useState(false);
   const dark = theme === 'dark';
@@ -16,7 +23,7 @@ const Nav = ({ current, go, theme }) => {
     return () => { document.body.style.overflow = ''; };
   }, [menuOpen]);
 
-  const handleGo = (key) => { setMenuOpen(false); go(key); };
+  const handleGo = (key: string) => { setMenuOpen(false); go(key); };
 
   const links = [
     { key: 'how', label: 'How it works' },
@@ -107,4 +114,3 @@ const Nav = ({ current, go, theme }) => {
   );
 };
 
-window.Nav = Nav;

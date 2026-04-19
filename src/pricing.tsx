@@ -1,6 +1,13 @@
-// FastNet — Pricing page
+import { SectionTag, Arrow, cn, type GoFn } from './primitives';
+import { FinalCTA } from './sections';
 
-const PLANS = [
+export interface Plan {
+  id: string; name: string; price: number;
+  tagline: string; description: string;
+  included: string[]; cta: string; recommended: boolean;
+}
+
+export const PLANS: Plan[] = [
   {
     id: 'failover', name: 'FastNet Failover', price: 149,
     tagline: 'Keep your fiber. Add the safety net.',
@@ -51,7 +58,7 @@ const FAQ = [
   ['Will it work in a blackout?', 'The Beacon runs on PoE+ and can be UPS-powered. A 1kWh UPS gives you roughly 8 hours of internet without utility power.'],
 ];
 
-const PlanCard = ({ plan, onChoose }) => (
+const PlanCard = ({ plan, onChoose }: { plan: Plan; onChoose: (id: string) => void }) => (
   <div className={cn(
     'p-8 md:p-10 rounded-[22px] flex flex-col relative border',
     plan.recommended
@@ -109,7 +116,7 @@ const PlanCard = ({ plan, onChoose }) => (
   </div>
 );
 
-const Pricing = ({ go, startCheckout }) => (
+export const Pricing = ({ go, startCheckout }: { go: GoFn; startCheckout: (id: string) => void }) => (
   <div className="bg-bone-100 text-ink-900">
     <section className="pt-20 pb-10 md:pt-30 md:pb-15">
       <div className="container-app">
@@ -160,4 +167,3 @@ const Pricing = ({ go, startCheckout }) => (
   </div>
 );
 
-Object.assign(window, { Pricing, PLANS });
